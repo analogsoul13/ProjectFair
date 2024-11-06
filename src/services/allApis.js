@@ -1,0 +1,27 @@
+import base_url from "./base_url";
+import commonApi from "./commonApi";
+
+
+export const registerApi = async (data) => {
+    return await commonApi(`${base_url}/reg`, "POST", "", data)
+}
+
+export const loginApi = async (data) => {
+    return await commonApi(`${base_url}/log`, "POST", "", data)
+}
+
+export const addProjectApi = async (data, header) => {
+    return await commonApi(`${base_url}/addprojects`, "POST", header, data)
+}
+
+export const getProjectApi = async (header) => {
+    return await commonApi(`${base_url}/getlist`, "GET", header, "")
+}
+
+export const deleteProjectApi = async (id, header) => {
+    return await commonApi(`${base_url}/delproject/${id}`, "DELETE", header, {})
+}
+
+export const updateProjectApi = async(id,header,data) => {
+    return await commonApi(`${base_url}/updateproject/${id}`,"PUT",header,data)
+}
