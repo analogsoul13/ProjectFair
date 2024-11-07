@@ -29,7 +29,7 @@ function Edit() {
                         <Col className='d-flex justify-content-center align-items-center'>
                         <label>
                             <input type="file" style={{display:'none'}} />
-                            <img src="http://www.pngall.com/wp-content/uploads/2/Upload-PNG.png" className='img-fluid' alt="" />                            
+                            <img src="https://icon-library.com/images/add-image-icon-png/add-image-icon-png-14.jpg" className='img-fluid' alt="" />                            
                         </label>
 
                         </Col>

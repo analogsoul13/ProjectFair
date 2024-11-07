@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Header from '../components/Header'
 import { Row, Col } from 'react-bootstrap'
 import Add from '../components/Add'
 import Edit from '../components/Edit'
 import { getProjectApi } from '../services/allApis'
+import { responseContext } from '../contextapi/ContextProvider'
 
 function Dashboard() {
   const [view, setView] = useState(false)
-  const [uname, setUname] = useState("")
+  const [uname, setUname] = useState("")  // to display username on dashboard
   const [projects, setProjects] = useState([])
+  const {response} = useContext(responseContext)
 
   const getData = async() => {
     const header = {
@@ -31,7 +33,7 @@ function Dashboard() {
       setUname(sessionStorage.getItem('user'))
     }
     getData()
-  }, [])
+  }, [response])
 
   const changeView = () => {
     setView(!view)

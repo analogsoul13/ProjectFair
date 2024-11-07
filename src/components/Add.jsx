@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { addProjectApi } from '../services/allApis';
+import { responseContext } from '../contextapi/ContextProvider';
 
 function Add() {
     const [show, setShow] = useState(false);
@@ -13,47 +14,57 @@ function Add() {
 
     const [preview, setPreview] = useState("");
 
+    const { setResponse } = useContext(responseContext)
+
     const handleProjectAdd = async () => {
-        console.log(project);
-        const {title, description, languages, github, demo, image} = project
+        try {
+            console.log(project);
+            const { title, description, languages, github, demo, image } = project
 
-        if(!title || !description || !languages || !github || !demo || !image){
-            toast.warning("Invalid Data")
-        }
-        else{
-            
-            const fd = new FormData()
-            fd.append('title',title)
-            fd.append('description',description)
-            fd.append('languages',languages)
-            fd.append('github',github)
-            fd.append('demo',demo)
-            fd.append('image',image)
-
-            // const header = {
-            //     'Content-Type' : "multipart/form-data",
-            //     'Authorization' : `Token ${sessionStorage.getItem('token')}`
-            // }
-
-            const header = {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}` // or "Token" based on backend requirement
-            };
-            
-            
-            const res = await addProjectApi(fd,header)
-            console.log(res)
-            if(res.status==200){
-                toast.success("Project Added Succesfully")
-                setProject({ title: "", description: "", languages: "", github: "", demo: "", image: "" });
-                setPreview("");              
-                handleClose()
+            if (!title || !description || !languages || !github || !demo || !image) {
+                toast.warning("Invalid Data")
             }
-            else{
-                toast.error("Failed to Add !!")
+            else {
+
+                const fd = new FormData()
+                fd.append('title', title)
+                fd.append('description', description)
+                fd.append('languages', languages)
+                fd.append('github', github)
+                fd.append('demo', demo)
+                fd.append('image', image)
+
+                // const header = {
+                //     'Content-Type' : "multipart/form-data",
+                //     'Authorization' : `Token ${sessionStorage.getItem('token')}`
+                // }
+
+                const header = {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}` // or "Token" based on backend requirement
+                };
+
+
+                const res = await addProjectApi(fd, header)
+                console.log(res)
+                if (res.status == 200) {
+                    toast.success("Project Added Succesfully")
+                    setProject({ title: "", description: "", languages: "", github: "", demo: "", image: "" });
+                    setPreview("");
+                    handleClose()
+                    setResponse(res)
+                }
+                else {
+                    toast.error("Failed to Add !!")
+                }
             }
+        } catch (err) {
+            console.log(err)
+            toast.error("An error occurred. Please check the console for details.");
+
         }
-       
+
+
     }
 
     useEffect(() => {
@@ -94,7 +105,7 @@ function Add() {
                                 {preview ? (
                                     <img src={preview} className='img-fluid' alt="Preview" />
                                 ) : (
-                                    <img src="http://www.pngall.com/wp-content/uploads/2/Upload-PNG.png" className='img-fluid' alt="Upload" />
+                                    <img src="https://icon-library.com/images/add-image-icon-png/add-image-icon-png-14.jpg" className='img-fluid' alt="Upload" />
                                 )}
                             </label>
                         </Col>
