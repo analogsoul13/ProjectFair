@@ -2,16 +2,25 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
 
   const [uname,setUname] = useState("")
+  
+  const nav = useNavigate()
 
   useEffect(() => {
     if(sessionStorage.getItem('user')) {
       setUname(sessionStorage.getItem('user'))
     }
   })
+  
+  const logout = ()=>{
+    sessionStorage.clear()
+    nav('/')
+
+  }
 
   return (
     <>
@@ -27,7 +36,7 @@ function Header() {
             <Navbar.Text>
               Signed in as: <a href="#login" style={{textDecoration:'none'}}>{uname}</a>
             </Navbar.Text>
-            <button className='btn ms-4'>
+            <button onClick={logout} className='btn ms-4'>
               <i className="fa-solid fa-right-from-bracket" style={{color: "#000000",}} />
             </button>
               
