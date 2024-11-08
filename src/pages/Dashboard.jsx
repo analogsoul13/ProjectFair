@@ -55,7 +55,7 @@ function Dashboard() {
     try {
       const res = await deleteProjectApi(id, header);
       if (res.status === 200) {
-        toast.success('Project deleted successfully!');
+        //toast.success('Project deleted successfully!');
         getData(); // Refresh projects list
       } else {
         toast.warning('Deletion failed!');
@@ -94,7 +94,7 @@ function Dashboard() {
                         >
                           <i className="fa-brands fa-github fa-xl" />
                         </a>
-                        <Edit projectId={project._id} />
+                        <Edit item={project} />
                         <button
                           onClick={() => handleDelete(project._id)}
                           className="btn text-danger"

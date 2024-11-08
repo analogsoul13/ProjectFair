@@ -23,5 +23,5 @@ export const deleteProjectApi = async (id, header) => {
 }
 
 export const updateProjectApi = async(id,header,data) => {
-    return await commonApi(`${base_url}/updateproject/${id}`,"PUT",header,data)
+    return await commonApi(`${base_url}/updatepro/${id}`,"PUT",header,data)
 }
