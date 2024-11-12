@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Header() {
 
@@ -18,6 +19,7 @@ function Header() {
   
   const logout = ()=>{
     sessionStorage.clear()
+    toast.info("User Logged Out!!")
     nav('/')
 
   }

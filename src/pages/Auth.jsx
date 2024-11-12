@@ -58,6 +58,9 @@ function Auth() {
         })
         sessionStorage.setItem('token', res.data.token)
         sessionStorage.setItem('user', res.data.username)
+        sessionStorage.setItem('profile', res.data.profile)
+        sessionStorage.setItem('linkedin', res.data.linkedin)
+        sessionStorage.setItem('github', res.data.github)
         nav('/')
       }
       else {
