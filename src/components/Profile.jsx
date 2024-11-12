@@ -58,6 +58,7 @@ function Profile() {
                 const result = await updateProfileApi(header,fd)
                 if(result.status==200){
                     toast.success("Profile Updation Successful!!")
+                    sessionStorage.clear()
                     nav('/auth')
                 }
                 else{
@@ -69,7 +70,7 @@ function Profile() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`
                 } 
-                const result = await updateProfileApi(header,fd)
+                const result = await updateProfileApi(header,details)
                 if(result.status==200){
                     toast.success("Profile Updation Successful!!")
                     sessionStorage.clear()
