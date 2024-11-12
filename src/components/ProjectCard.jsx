@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Row,Col } from 'react-bootstrap';
 
-function ProjectCard() {
+function ProjectCard({project}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -15,7 +15,7 @@ function ProjectCard() {
     <Card style={{ width: '18rem' }}>
       <Card.Img onClick={handleShow} style={{cursor:'pointer'}} variant="top" src="https://figmaelements.com/wp-content/uploads/2020/11/figma-e-commerce-app.jpg" />
       <Card.Body>
-        <Card.Title>Project Title</Card.Title>
+        <Card.Title>{project.title}</Card.Title>
       </Card.Body>
     </Card>
 
@@ -27,7 +27,7 @@ function ProjectCard() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Project Title</Modal.Title>
+          <Modal.Title>{project.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body className='bg-dark'>
           <Row>
@@ -35,12 +35,12 @@ function ProjectCard() {
                 <img src="https://figmaelements.com/wp-content/uploads/2020/11/figma-e-commerce-app.jpg" className='img-fluid' alt="" />
             </Col>
             <Col>
-                <h4>Project Title</h4>
+                <h4>{project.title}</h4>
                 <h6><span className='text-info'>Description :</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, neque.
+                    {project.description}
                 </h6>
-                <h6><span className='text-info'>Language :</span>
-                    HTML,CSS,JS
+                <h6><span className='text-info'>Languages :</span>
+                    {project.languages}
                 </h6>
                 <div className='mt-3 d-flex gap-4'>
                     <a href="">

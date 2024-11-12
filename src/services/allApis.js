@@ -29,3 +29,7 @@ export const updateProjectApi = async(id,header,data) => {
 export const updateProfileApi = async(header,data) => {
     return await commonApi(`${base_url}/updateprofile`,"PUT",header,data)
 }
+
+export const getAllProjectsApi = async(header) => {
+    return await commonApi(`${base_url}/allprojects`,"GET",header)
+}
