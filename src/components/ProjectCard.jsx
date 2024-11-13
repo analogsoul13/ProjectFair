@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Row,Col } from 'react-bootstrap';
+import base_url from '../services/base_url';
 
 function ProjectCard({project}) {
     const [show, setShow] = useState(false);
@@ -13,7 +14,7 @@ function ProjectCard({project}) {
     return (
     <>
     <Card style={{ width: '18rem' }}>
-      <Card.Img onClick={handleShow} style={{cursor:'pointer'}} variant="top" src="https://figmaelements.com/wp-content/uploads/2020/11/figma-e-commerce-app.jpg" />
+      <Card.Img onClick={handleShow} style={{cursor:'pointer'}} variant="top" src={project.image?`${base_url}/upload/${project.image}`:"https://figmaelements.com/wp-content/uploads/2020/11/figma-e-commerce-app.jpg"} />
       <Card.Body>
         <Card.Title>{project.title}</Card.Title>
       </Card.Body>
@@ -32,7 +33,7 @@ function ProjectCard({project}) {
         <Modal.Body className='bg-dark'>
           <Row>
             <Col>
-                <img src="https://figmaelements.com/wp-content/uploads/2020/11/figma-e-commerce-app.jpg" className='img-fluid' alt="" />
+                <img src={project.image?`${base_url}/upload/${project.image}`:"https://figmaelements.com/wp-content/uploads/2020/11/figma-e-commerce-app.jpg"} className='img-fluid' alt="" />
             </Col>
             <Col>
                 <h4>{project.title}</h4>
