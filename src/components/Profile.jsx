@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
 import base_url from '../services/base_url';
 import { updateProfileApi } from '../services/allApis';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { logContext } from '../contextapi/AuthContext';
 
 function Profile() {
     const [view, setView] = useState(false);
@@ -13,6 +14,7 @@ function Profile() {
     const [preview, setPreview] = useState()
 
     const nav = useNavigate()
+    const {setLogStatus} = useContext(logContext)
 
     // Toggle profile section
     const changeView = () => {
@@ -59,6 +61,7 @@ function Profile() {
                 if(result.status==200){
                     toast.success("Profile Updation Successful!!")
                     sessionStorage.clear()
+                    setLogStatus(false)
                     nav('/auth')
                 }
                 else{
@@ -74,6 +77,7 @@ function Profile() {
                 if(result.status==200){
                     toast.success("Profile Updation Successful!!")
                     sessionStorage.clear()
+                    setLogStatus(false)
                     nav('/auth')
                 }
                 else{

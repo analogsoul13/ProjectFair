@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Row, Col, FormControl, FloatingLabel } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { loginApi, registerApi } from '../services/allApis'
 import { useNavigate } from 'react-router-dom'
+import { logContext } from '../contextapi/AuthContext'
 
 function Auth() {
   const [authStatus, setAuthStatus] = useState(false)
@@ -11,6 +12,8 @@ function Auth() {
   })
 
   const nav = useNavigate()
+
+  const {setLogStatus} = useContext(logContext)
 
   const changeAuth = () => {
     setAuthStatus(!authStatus)
@@ -62,6 +65,7 @@ function Auth() {
         sessionStorage.setItem('linkedin', res.data.linkedin)
         sessionStorage.setItem('github', res.data.github)
         nav('/')
+        setLogStatus(true)
       }
       else {
         toast.error("Login Failed !!")

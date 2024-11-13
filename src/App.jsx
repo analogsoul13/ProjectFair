@@ -8,16 +8,19 @@ import { Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { logContext } from './contextapi/AuthContext'
+import { useContext } from 'react'
 
 function App() {
 
+  const {logStatus} = useContext(logContext)
   return (
     <>
     <Routes>
       <Route path='/' element={<Landing/>} />
       <Route path='/auth' element={<Auth/>} />
-      <Route path='/projects' element={<AllProjects/>} />
-      <Route path='/dash' element={<Dashboard/>} />
+      <Route path='/projects' element={logStatus?<AllProjects/>:<Auth/>} />
+      <Route path='/dash' element={logStatus?<Dashboard/>:<Auth/>} />
     </Routes>
     <Footer />
     <ToastContainer/>

@@ -27,7 +27,7 @@ function AllProjects() {
     <Header />
     <div className="container-fluid mt-2 mb-2 p-5">
       <h3 className='text-center text-info'>All Projects</h3>
-      <div className='d-flex justify-content-around p-5 mt-4'>
+      <div className='row gap-5 justify-content-around p-5 mt-4'>
         {projects.length>0?(
           projects.map((item)=>(
             <ProjectCard project={item}/>
