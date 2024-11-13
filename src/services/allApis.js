@@ -30,6 +30,6 @@ export const updateProfileApi = async(header,data) => {
     return await commonApi(`${base_url}/updateprofile`,"PUT",header,data)
 }
 
-export const getAllProjectsApi = async(header) => {
-    return await commonApi(`${base_url}/allprojects`,"GET",header)
+export const getAllProjectsApi = async() => {
+    return await commonApi(`${base_url}/allprojects`,"GET","","")
 }
