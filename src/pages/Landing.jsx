@@ -22,7 +22,7 @@ function Landing() {
         const fetchProjects = async () => {
             try {
                 const result = await getAllProjectsApi()
-                console.log(result)
+                //console.log(result)
                 setProjects(result.data)
             } catch (err) {
                 console.log(err)
