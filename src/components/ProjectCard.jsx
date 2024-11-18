@@ -14,7 +14,7 @@ function ProjectCard({project}) {
     return (
     <>
     <Card style={{ width: '18rem' }}>
-      <Card.Img onClick={handleShow} style={{cursor:'pointer'}} variant="top" src={project.image?`${base_url}/upload/${project.image}`:"https://figmaelements.com/wp-content/uploads/2020/11/figma-e-commerce-app.jpg"} />
+      <Card.Img onClick={handleShow} style={{cursor:'pointer',height:'280px'}} variant="top" src={project.image?`${base_url}/upload/${project.image}`:"https://figmaelements.com/wp-content/uploads/2020/11/figma-e-commerce-app.jpg"} />
       <Card.Body>
         <Card.Title>{project.title}</Card.Title>
       </Card.Body>
